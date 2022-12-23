@@ -33,6 +33,11 @@ fclean:	clean
 		@rm -f $(NAME)
 		@echo "$(F_CYAN)$(F_BOLD) $(NAME) executable successfully deleted.$(F_NONE)"
 
+test:
+	./$(NAME) > tmp
+	diff $(SRCS) tmp
+	rm tmp
+
 re:	fclean $(NAME)
 
 .PHONY: clean fclean all re

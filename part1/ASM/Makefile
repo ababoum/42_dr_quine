@@ -6,9 +6,9 @@ OBJS = ${SRCS:.s=.o}
 
 # compilation parameters
 ASM		= nasm
-ASFLAGS	= -f elf64 -g -lc
+ASFLAGS	= -f elf64 -g 
 LD 		= clang
-LDFLAGS	= -lc
+LDFLAGS	= 
 RM		= rm -rf
 
 
@@ -22,6 +22,11 @@ all: $(NAME)
 
 $(NAME):	$(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) -o $(NAME)
+
+test:
+	./$(NAME) > tmp
+	diff $(SRCS) tmp
+	rm tmp
 
 re:			fclean all
 
