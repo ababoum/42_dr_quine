@@ -27,7 +27,16 @@ main:
 	extern fprintf
 	call fprintf wrt ..plt
 
+	mov rdi, command1
+	extern system
+	call system
 
+	mov rdi, n - 1
+	cmp rdi, 0
+	jg _exe
+
+_exit:
+	xor rax, rax
 	pop rbp
 	ret
 
@@ -36,8 +45,15 @@ _err_case:
 	mov rax, 1
 	ret
 
+_exe:
+	mov rdi, command2
+	call system
+	jmp _exit
+
+
 section .data
-	code:	db	"", 0
+	code:	db	"%3$cdefine	n	5", 0
 	filename:	db	"Sully_", n - 1 + 48, ".s", 0
-	command1:	db  "nasm -f elf64 Sully_", n - 1 + 48, ".s &&", 0
+	command1:	db  "nasm -f elf64 Sully_", n - 1 + 48, ".s && clang Sully_", n - 1 + 48, ".o -o Sully_" , n - 1 + 48, " && echo -n", 0
+	command2:	db	"./Sully_", n - 1 + 48, 0
 	mode:	db	"w", 0
