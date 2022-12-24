@@ -25,6 +25,11 @@ $(NAME):	$(OBJS) $(INCLUDES)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 		@echo "$(F_GREEN)$(F_BOLD) $(NAME) executable is compiled and ready.$(F_NONE)"
 
+test:
+	./$(NAME)
+	diff $(SRCS) Grace_kid.c
+	rm Grace_kid.c
+
 clean:
 		@rm -f $(OBJS)
 		@echo "$(F_CYAN)$(F_BOLD) .o files successfully deleted.$(F_NONE)"
