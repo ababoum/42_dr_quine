@@ -1,4 +1,4 @@
-%define	n	5
+%define	n	6
 
 section .text
 	default rel

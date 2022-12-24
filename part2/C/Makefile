@@ -27,7 +27,7 @@ $(NAME):	$(OBJS) $(INCLUDES)
 
 test:
 	./$(NAME)
-	diff $(SRCS) Grace_kid.c
+	- diff $(SRCS) Grace_kid.c
 	rm Grace_kid.c
 
 clean:

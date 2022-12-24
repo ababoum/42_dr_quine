@@ -25,7 +25,7 @@ $(NAME):	$(OBJS)
 
 test:
 	./$(NAME) > tmp
-	diff $(SRCS) tmp
+	- diff $(SRCS) tmp
 	rm tmp
 
 re:			fclean all
