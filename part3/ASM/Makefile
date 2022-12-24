@@ -1,6 +1,6 @@
-NAME = Grace
+NAME = Sully
 
-SRCS = Grace.s
+SRCS = Sully.s
 
 OBJS = ${SRCS:.s=.o}
 
@@ -24,9 +24,13 @@ $(NAME):	$(OBJS)
 	$(LD) $(LDFLAGS) $(OBJS) -o $(NAME)
 
 test:
-	./$(NAME)
-	- diff $(SRCS) Grace_kid.s
-	rm Grace_kid.s
+	mkdir -p tmp
+	cp Sully tmp
+	cd tmp ; ./Sully ; ls -al | grep Sully | wc -l
+	- diff Sully.s tmp/Sully_5.s
+	- diff Sully.s tmp/Sully_4.s
+	- diff tmp/Sully_5.s tmp/Sully_0.s
+	rm -rf tmp
 
 re:			fclean all
 
@@ -35,3 +39,4 @@ clean:
 
 fclean: 	clean
 			${RM} $(NAME)
+			${RM} $(NAME)_*

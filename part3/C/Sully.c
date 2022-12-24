@@ -3,7 +3,7 @@
 
 int main()
 {
-	int i = 5;
+	int i = 6;
 	char fn[10] = {0};
 	sprintf(fn, "Sully_%d.c", i - 1);
 	FILE *f = fopen(fn, "w");

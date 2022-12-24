@@ -25,6 +25,15 @@ $(NAME):	$(OBJS) $(INCLUDES)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 		@echo "$(F_GREEN)$(F_BOLD) $(NAME) executable is compiled and ready.$(F_NONE)"
 
+test:
+		mkdir -p tmp
+		cp Sully tmp
+		cd tmp ; ./Sully ; ls -al | grep Sully | wc -l
+		- diff Sully.c tmp/Sully_5.c
+		- diff Sully.c tmp/Sully_4.c
+		- diff tmp/Sully_5.c tmp/Sully_0.c
+		rm -rf tmp
+
 clean:
 		@rm -f $(OBJS)
 		@echo "$(F_CYAN)$(F_BOLD) .o files successfully deleted.$(F_NONE)"
